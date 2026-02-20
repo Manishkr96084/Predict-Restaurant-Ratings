@@ -159,5 +159,4 @@ def predict():
         )
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# WSGI servers (like Vercel's adapter) will import `app`.
