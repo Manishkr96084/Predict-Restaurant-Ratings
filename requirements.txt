@@ -1,2 +1,2 @@
 flask==2.2.5
-vercel-wsgi==0.7.3
+vercel-wsgi
