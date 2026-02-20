@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rating Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="predictor-page">
+
+<nav>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='1.png') }}">
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/predictor">Predictor</a>
+        <a href="/about">About Me</a>
+    </div>
+</nav>
+
+<div class="predictor-container">
+
+   
+    <div class="form-section">
+        <h1>Welcome to Rating Predictor</h1>
+        <p>Enter the details and get the Rating (:</p>
+
+        <form method="POST" action="/predict">
+
+           
+            <label>Restaurant Type</label>
+            <select name="restaurant_type" required>
+                <option disabled selected>Select Here</option>
+                {% for item in restaurant_types %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+            
+            <label>Cuisines</label>
+            <select name="cuisines" required>
+                <option disabled selected>Select Here</option>
+                {% for item in cuisines_list %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+           
+            <label>Online Order Facility</label>
+            <select name="online_order" required>
+                <option disabled selected>Select</option>
+                {% for item in yes_no_options %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+           
+            <label>Book Table Facility</label>
+            <select name="book_table" required>
+                <option disabled selected>Select</option>
+                {% for item in yes_no_options %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+            
+            <label>Location</label>
+            <select name="location" required>
+                <option disabled selected>Select Here</option>
+                {% for item in locations_list %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+            
+            <label>Cost for People</label>
+            <select name="cost" required>
+                <option disabled selected>Select Cost Range</option>
+                {% for item in cost_ranges %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+            
+            <label>No. of Votes</label>
+            <select name="votes" required>
+                <option disabled selected>Select Vote Range</option>
+                {% for item in vote_ranges %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+            <div class="btn-group">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+
+    
+    <div class="result-section">
+        <h1>Result</h1>
+        <p>Expected Rating</p>
+        <hr>
+        {% if prediction %}
+            <h2>{{ prediction }}</h2>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
